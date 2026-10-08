@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neurosim-api"
+version = "0.1.0"
+description = "Controlled stimulus comparisons using Meta TRIBE v2"
+requires-python = ">=3.11,<3.13"
+dependencies = ["fastapi>=0.115,<1", "uvicorn[standard]>=0.30,<1", "python-multipart>=0.0.20", "pydantic-settings>=2.7,<3", "numpy==2.2.6"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "httpx>=0.27"]
+inference = ["tribev2 @ git+https://github.com/facebookresearch/tribev2.git@af58661791a351a448a489042a28f6c37e1c14b7"]
+
+[tool.setuptools.packages.find]
+include = ["neurosim*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
